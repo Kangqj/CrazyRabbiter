@@ -13,8 +13,11 @@
 {
     RabbiterView  *rabbiter1;
     RabbiterView  *rabbiter2;
-    UIImageView   *threeImage;
-    UIImageView   *lanImage;
+    UIImageView   *paopaoL;
+    UIImageView   *paopaoR;
 }
+
+//翻页动画
+@property (copy, nonatomic) void (^ StoryFinish)();
 
 @end

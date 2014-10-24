@@ -10,6 +10,8 @@
 
 @implementation StoryView
 
+@synthesize StoryFinish;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -119,7 +121,7 @@
 - (void)showTwoRabbiterChatImageView
 {
     //聊天paopao
-    UIImageView *paopaoL = [[UIImageView alloc] initWithFrame:CGRectMake(40, 430, 100,50)];
+    paopaoL = [[UIImageView alloc] initWithFrame:CGRectMake(40, 430, 100,55)];
     paopaoL.image = [UIImage imageNamed:@"paopao_L.png"];
     [self addSubview:paopaoL];
     paopaoL.alpha = 0;
@@ -132,9 +134,9 @@
     label_L.backgroundColor = [UIColor clearColor];
     [paopaoL addSubview:label_L];
     
-    [self performSelector:@selector(showPaopao:) withObject:paopaoL afterDelay:2];
+    [self performSelector:@selector(showPaopaoL) withObject:paopaoL afterDelay:1];
     
-    UIImageView *paopaoR = [[UIImageView alloc] initWithFrame:CGRectMake(120, 430, 100,50)];
+    paopaoR = [[UIImageView alloc] initWithFrame:CGRectMake(120, 430, 100,55)];
     paopaoR.image = [UIImage imageNamed:@"paopao_R.png"];
     [self addSubview:paopaoR];
     paopaoR.alpha = 0;
@@ -146,41 +148,66 @@
     label_R.textColor = [UIColor blueColor];
     label_R.backgroundColor = [UIColor clearColor];
     [paopaoR addSubview:label_R];
-    
-    [self performSelector:@selector(showPaopao:) withObject:paopaoR afterDelay:5.5];
 }
 
 
-//现实泡泡
-- (void)showPaopao:(UIImageView *)paopao
+//显示泡泡L
+- (void)showPaopaoL
 {
     [UIView animateWithDuration:0.5 animations:^{
         
-        paopao.alpha = 1;
+        paopaoL.alpha = 1;
         
     } completion:^(BOOL finished) {
         
-        [self performSelector:@selector(dissmissPaopao:) withObject:paopao afterDelay:3];
+        [self performSelector:@selector(dissmissPaopaoL) withObject:nil afterDelay:1];
         
     }];
 }
 
-
-//泡泡消失
-- (void)dissmissPaopao:(UIImageView *)paopao
+//泡泡L消失
+- (void)dissmissPaopaoL
 {
     [UIView animateWithDuration:0.5 animations:^{
         
-        paopao.alpha = 0;
+        paopaoL.alpha = 0;
         
     } completion:^(BOOL finished) {
         
-        [paopao removeFromSuperview];
+        [paopaoL removeFromSuperview];
         
-        [self performSelector:@selector(showTwoRabbiterToghter) withObject:nil afterDelay:1];
+        [self performSelector:@selector(showPaopaoR) withObject:nil afterDelay:1];;
     }];
 }
 
+//显示泡泡R
+- (void)showPaopaoR
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        paopaoR.alpha = 1;
+        
+    } completion:^(BOOL finished) {
+        
+        [self performSelector:@selector(dissmissPaopaoR) withObject:nil afterDelay:1];
+        
+    }];
+}
+
+//泡泡R消失
+- (void)dissmissPaopaoR
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        paopaoR.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [paopaoR removeFromSuperview];
+        
+        [self performSelector:@selector(showTwoRabbiterToghter) withObject:nil afterDelay:0.5];
+    }];
+}
 
 //两只兔子一起走
 - (void)showTwoRabbiterToghter
@@ -196,7 +223,16 @@
         CGRect rect2 = rabbiter2.frame;
         rect2.origin.x = 200+10;
         rabbiter2.frame = rect2;
+    } completion:^(BOOL finished) {
+        
+        [self turnOffThisPage];
+        
     }];
+}
+
+- (void)turnOffThisPage
+{
+    StoryFinish();
 }
 
 
