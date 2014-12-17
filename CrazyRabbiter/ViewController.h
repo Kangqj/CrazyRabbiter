@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SceneView.h"
 #import "StoryView.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import "CheckPostView.h"
 
 @interface ViewController : UIViewController
 {
-    SceneView   *sceneView;
-    StoryView   *stroyView;
+    SceneView     *sceneView;//游戏主视图
+    StoryView     *stroyView;//故事剧情视图
+    CheckPostView *checkView;//关卡选择视图
 }
+
+- (void)temporaryPlayGame;
 
 @end

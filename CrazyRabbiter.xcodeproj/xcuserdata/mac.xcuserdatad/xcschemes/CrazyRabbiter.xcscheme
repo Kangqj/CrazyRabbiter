@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "046DFAB019D65E3D0012AFBA"
-               BuildableName = "&#x75af;&#x72c2;&#x7684;&#x5154;&#x5b50;.app"
+               BuildableName = "CrazyRabbiter.app"
                BlueprintName = "CrazyRabbiter"
                ReferencedContainer = "container:CrazyRabbiter.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "046DFAB019D65E3D0012AFBA"
-            BuildableName = "&#x75af;&#x72c2;&#x7684;&#x5154;&#x5b50;.app"
+            BuildableName = "CrazyRabbiter.app"
             BlueprintName = "CrazyRabbiter"
             ReferencedContainer = "container:CrazyRabbiter.xcodeproj">
          </BuildableReference>
@@ -62,12 +62,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "046DFAB019D65E3D0012AFBA"
-            BuildableName = "&#x75af;&#x72c2;&#x7684;&#x5154;&#x5b50;.app"
+            BuildableName = "CrazyRabbiter.app"
             BlueprintName = "CrazyRabbiter"
             ReferencedContainer = "container:CrazyRabbiter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -80,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "046DFAB019D65E3D0012AFBA"
-            BuildableName = "&#x75af;&#x72c2;&#x7684;&#x5154;&#x5b50;.app"
+            BuildableName = "CrazyRabbiter.app"
             BlueprintName = "CrazyRabbiter"
             ReferencedContainer = "container:CrazyRabbiter.xcodeproj">
          </BuildableReference>

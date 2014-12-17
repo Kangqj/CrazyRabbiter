@@ -55,5 +55,17 @@ tipMsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];\
 #define MY_USER_ID [[NSUserDefaults standardUserDefaults]objectForKey:kMY_USER_ID]
 
 
+#define PlayGameTime   @"time_playGame"
+#define isStoryFinish  @"isStoryFinish"
+
+
+typedef enum BlurOperate
+{
+    BlurOperate_restart  = 0,
+    BlurOperate_choose   = 1,
+    BlurOperate_continue = 2,
+    BlurOperate_share    = 3
+    
+}BlurOperate;
 
 #endif

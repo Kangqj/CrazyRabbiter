@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>78199755-916B-4A65-B170-CB6BB737BC99</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CrazyRabbiter</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EAB28CF7-76CD-45B5-A741-AE615D174F0E</key>
+		<string>https://github.com/Kangqj/CrazyRabbiter.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CrazyRabbiter.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EAB28CF7-76CD-45B5-A741-AE615D174F0E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Kangqj/CrazyRabbiter.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EAB28CF7-76CD-45B5-A741-AE615D174F0E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EAB28CF7-76CD-45B5-A741-AE615D174F0E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CrazyRabbiter</string>
+		</dict>
+	</array>
+</dict>
+</plist>

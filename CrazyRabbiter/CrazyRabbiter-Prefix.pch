@@ -14,6 +14,14 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
+#import "GlobalDefine.h"
+#import "MusicManager.h"
+#import "GameSetManager.h"
+#import "AnimationEngin.h"
+#import "KIAlertView.h"
+#import "PulsingHaloLayer.h"
+#import "KeepTimer.h"
+
 #endif
 
- #import "GlobalDefine.h"
+
