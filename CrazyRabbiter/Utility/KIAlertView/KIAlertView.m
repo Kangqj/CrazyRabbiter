@@ -155,7 +155,18 @@ static char overviewKey;
         contentView.layer.cornerRadius = 8;
         contentView.alpha = 0;
         
-        titleLab  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, contentView.frame.size.width, 40)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(contentView.frame.size.width-50, 0, 50, 50)];
+        imageView.image = [UIImage imageNamed:@"Icon.png"];
+        [contentView addSubview:imageView];
+        
+        NSRange range = [title rangeOfString:@"成功"];
+        
+        if (range.location == NSNotFound)
+        {
+            imageView.image = [UIImage imageNamed:@"glede2.png"];
+        }
+        
+        titleLab  = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, contentView.frame.size.width, 40)];
         titleLab.font = [UIFont boldSystemFontOfSize:20];
         [titleLab setTextColor:[UIColor blackColor]];
         titleLab.backgroundColor = [UIColor clearColor];

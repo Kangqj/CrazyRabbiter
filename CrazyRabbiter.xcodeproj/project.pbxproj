@@ -148,6 +148,8 @@
 		049285A51A41B87C009CC9F2 /* glede3.png in Resources */ = {isa = PBXBuildFile; fileRef = 049285A21A41B87C009CC9F2 /* glede3.png */; };
 		049285A61A41B87C009CC9F2 /* glede4.png in Resources */ = {isa = PBXBuildFile; fileRef = 049285A31A41B87C009CC9F2 /* glede4.png */; };
 		049285A71A41B87C009CC9F2 /* glede5.png in Resources */ = {isa = PBXBuildFile; fileRef = 049285A41A41B87C009CC9F2 /* glede5.png */; };
+		049285A91A41C1E0009CC9F2 /* huoying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 049285A81A41C1E0009CC9F2 /* huoying.mp3 */; };
+		049285AB1A41C8A1009CC9F2 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 049285AA1A41C8A1009CC9F2 /* success.mp3 */; };
 		04944E4919F68915002D43CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04944E4819F68915002D43CD /* QuartzCore.framework */; };
 		04A530D81A14E89C00B3C8FA /* GameSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045994331A13AA4200B4615F /* GameSetManager.m */; };
 		04A530D91A14E8AD00B3C8FA /* MusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045994351A13AA4200B4615F /* MusicManager.m */; };
@@ -155,6 +157,7 @@
 		04A530DE1A14EFAC00B3C8FA /* AnimationEngin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A530DD1A14EFAC00B3C8FA /* AnimationEngin.m */; };
 		04C7422D1A35DA2600ACB0D4 /* moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C7422C1A35DA2600ACB0D4 /* moon.png */; };
 		04E6E8361A406D8C00DADB3E /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6E8351A406D8C00DADB3E /* FXBlurView.m */; };
+		04F6920B1A446E3E003F33A4 /* chaojimali.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04F6920A1A446E3E003F33A4 /* chaojimali.mp3 */; };
 		04F7512D1A2F44AE00823C6D /* KeepTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7512C1A2F44AE00823C6D /* KeepTimer.m */; };
 /* End PBXBuildFile section */
 
@@ -342,12 +345,15 @@
 		049285A21A41B87C009CC9F2 /* glede3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glede3.png; sourceTree = "<group>"; };
 		049285A31A41B87C009CC9F2 /* glede4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glede4.png; sourceTree = "<group>"; };
 		049285A41A41B87C009CC9F2 /* glede5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glede5.png; sourceTree = "<group>"; };
+		049285A81A41C1E0009CC9F2 /* huoying.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = huoying.mp3; sourceTree = "<group>"; };
+		049285AA1A41C8A1009CC9F2 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		04944E4819F68915002D43CD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		04A530DC1A14EFAC00B3C8FA /* AnimationEngin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationEngin.h; sourceTree = "<group>"; };
 		04A530DD1A14EFAC00B3C8FA /* AnimationEngin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationEngin.m; sourceTree = "<group>"; };
 		04C7422C1A35DA2600ACB0D4 /* moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moon.png; sourceTree = "<group>"; };
 		04E6E8341A406D8C00DADB3E /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		04E6E8351A406D8C00DADB3E /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		04F6920A1A446E3E003F33A4 /* chaojimali.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chaojimali.mp3; sourceTree = "<group>"; };
 		04F7512B1A2F44AE00823C6D /* KeepTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTimer.h; sourceTree = "<group>"; };
 		04F7512C1A2F44AE00823C6D /* KeepTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -731,6 +737,9 @@
 		045994621A13AA4200B4615F /* music */ = {
 			isa = PBXGroup;
 			children = (
+				04F6920A1A446E3E003F33A4 /* chaojimali.mp3 */,
+				049285AA1A41C8A1009CC9F2 /* success.mp3 */,
+				049285A81A41C1E0009CC9F2 /* huoying.mp3 */,
 				045994631A13AA4200B4615F /* bgmusic.mp3 */,
 				045994641A13AA4200B4615F /* storyMusic.mp3 */,
 			);
@@ -996,6 +1005,7 @@
 				045994831A13AA4200B4615F /* glede1.png in Resources */,
 				045994891A13AA4200B4615F /* paopao0.png in Resources */,
 				0459947C1A13AA4200B4615F /* 2.png in Resources */,
+				04F6920B1A446E3E003F33A4 /* chaojimali.mp3 in Resources */,
 				044D53DD1A0E673700D13456 /* clound.png in Resources */,
 				045994841A13AA4200B4615F /* glede2.png in Resources */,
 				049285A61A41B87C009CC9F2 /* glede4.png in Resources */,
@@ -1009,12 +1019,14 @@
 				045994921A13AA4200B4615F /* sun.png in Resources */,
 				04335DEF1A20DC6D0054715B /* waitting.png in Resources */,
 				045994881A13AA4200B4615F /* lock.png in Resources */,
+				049285A91A41C1E0009CC9F2 /* huoying.mp3 in Resources */,
 				044D53ED1A0E673700D13456 /* paopao_R.png in Resources */,
 				044AA9961A16229F001DE8BD /* ShareSDKLocalizable.strings in Resources */,
 				045994871A13AA4200B4615F /* ground_3.png in Resources */,
 				044D53F71A0E673700D13456 /* tuzi.png in Resources */,
 				045994811A13AA4200B4615F /* 7.png in Resources */,
 				044D53E91A0E673700D13456 /* ground_1.png in Resources */,
+				049285AB1A41C8A1009CC9F2 /* success.mp3 in Resources */,
 				0492859F1A41B871009CC9F2 /* tree10.png in Resources */,
 				046DFAD019D65E3D0012AFBA /* Images.xcassets in Resources */,
 				044AA9B51A162736001DE8BD /* share.png in Resources */,

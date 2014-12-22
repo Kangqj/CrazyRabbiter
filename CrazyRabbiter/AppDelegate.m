@@ -28,6 +28,8 @@
     
     [self initShareSDKDate];
     
+    launch = YES;
+    
     return YES;
 }
 
@@ -118,21 +120,32 @@
     
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     
+    NSString *note1 = @"当小兔子触碰到太阳或者月亮就会有惊喜发生哦～";
+    NSString *note2 = @"其实小兔子也可以左右移动哦～";
+    NSString *note3 = @"干嘛呢？还不快来救救你的小伙伴啦";
+    
+    NSArray *noteArr = [NSArray arrayWithObjects:note1,note2,note3, nil];
+    
+    NSInteger index = [Utils getRandomNumberBetween:0 to:2];
+    
     if (notification!=nil)
     {
         //从现在开始，10秒以后通知
-        notification.fireDate = date;
+        notification.fireDate = [[NSData data] dateByAddingTimeInterval:300];
         notification.repeatInterval = NSCalendarUnitDay;
         //使用本地时区
-        notification.timeZone=[NSTimeZone defaultTimeZone];
-        notification.alertBody = @"快来救救你的小伙伴啦";
+        notification.timeZone = [NSTimeZone defaultTimeZone];
+        notification.alertBody = [noteArr objectAtIndex:index];
         //通知提示音 使用默认的
-        notification.soundName= UILocalNotificationDefaultSoundName;
+        notification.soundName = UILocalNotificationDefaultSoundName;
         //这个通知到时间时，你的应用程序右上角显示的数字。
         notification.applicationIconBadgeNumber = 1;
         //启动这个通知
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
+    
+    launch = NO;
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -146,7 +159,10 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    [(ViewController *)self.window.rootViewController temporaryPlayGame];
+    if (!launch)
+    {
+        [(ViewController *)self.window.rootViewController temporaryPlayGame];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

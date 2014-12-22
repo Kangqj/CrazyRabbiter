@@ -9,6 +9,9 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+{
+    NSArray *musicArr;
+}
 
 @end
 
@@ -18,6 +21,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    musicArr = [[NSArray alloc] initWithObjects:@"chaojimali.mp3",@"huoying.mp3",@"bgmusic.mp3", nil];
     
     self.view.backgroundColor = [UIColor blackColor];
     
@@ -68,7 +73,9 @@
             
             [weakStroyView removeFromSuperview];
             [weakSelf.view addSubview:blockSelf->sceneView];
-            [[MusicManager shareManager] playMusic:@"bgmusic.mp3"];
+            
+            NSInteger index = [Utils getRandomNumberBetween:0 to:2];
+            [[MusicManager shareManager] playMusic:[blockSelf->musicArr objectAtIndex:index]];
             
             [UIView commitAnimations];
             
@@ -119,7 +126,9 @@
         [UIView setAnimationTransition: UIViewAnimationTransitionCurlUp forView:weakSelf.view cache:YES];
         
         [weakSelf.view addSubview:blockSelf->sceneView];
-        [[MusicManager shareManager] playMusic:@"bgmusic.mp3"];
+        
+        NSInteger index = [Utils getRandomNumberBetween:0 to:2];
+        [[MusicManager shareManager] playMusic:[blockSelf->musicArr objectAtIndex:index]];
         
         [UIView commitAnimations];
         
@@ -155,7 +164,9 @@
     sceneView = [[SceneView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:sceneView];
     
-    [[MusicManager shareManager] playMusic:@"bgmusic.mp3"];
+    __block ViewController *blockSelf = self;
+    NSInteger index = [Utils getRandomNumberBetween:0 to:2];
+    [[MusicManager shareManager] playMusic:[blockSelf->musicArr objectAtIndex:index]];
     
     __weak ViewController  *weakSelf = self;
     __weak SceneView      *weakSceneView = sceneView;
@@ -168,6 +179,8 @@
     
     //游戏页面跳入选关页面
     [sceneView setBackToChooseBlk:^{
+        
+        [weakSelf initCheckPostView];
         
         [UIView beginAnimations:@"animationID" context:nil];
         [UIView setAnimationDuration:1.0];

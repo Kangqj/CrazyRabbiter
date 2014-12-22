@@ -65,6 +65,7 @@
 
 @property (copy, nonatomic) void (^ RestartBlk)();
 @property (copy, nonatomic) void (^ BackToChooseBlk)();
+@property (assign, nonatomic) BOOL    start;
 
 - (void)temporaryGame;
 

@@ -21,6 +21,7 @@
 #import "KIAlertView.h"
 #import "PulsingHaloLayer.h"
 #import "KeepTimer.h"
+#import "Utils.h"
 
 #endif
 

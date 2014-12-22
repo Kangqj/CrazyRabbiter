@@ -22,7 +22,7 @@ const float MaxV = 2.5;
 
 @implementation SceneView
 
-@synthesize RestartBlk, BackToChooseBlk;
+@synthesize RestartBlk, BackToChooseBlk, start;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -96,11 +96,16 @@ const float MaxV = 2.5;
         noteView.text = @"                          提示\n\n    本关为百米冲刺，在100米内小兔子吃得的水果分数达到100分就算通过～\n\n             点击屏幕开始!";
         noteView.hidden = YES;
         
+        NSInteger r = [Utils getRandomNumberBetween:0 to:255];
+        NSInteger g = [Utils getRandomNumberBetween:0 to:255];
+        NSInteger b = [Utils getRandomNumberBetween:0 to:255];
+        
         //草地场景
         UIImageView *groundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, frame.size.height-40, frame.size.width,40)];
-        groundImage.backgroundColor = RGBColor(150, 206, 35);
+        groundImage.backgroundColor = RGBColor(r, g, b);
         [self addSubview:groundImage];
         
+        /*
         if ([GameSetManager shareManager].level >= 2)
         {
             groundImage.backgroundColor = RGBColor(154, 33, 32);
@@ -125,6 +130,7 @@ const float MaxV = 2.5;
 //                [groundImage addSubview:numLab];
 //            }
         }
+        */
         
         //兔子场景
         rabbiter = [[RabbiterView alloc] initWithFrame:CGRectMake(100, frame.size.height-60-40, 40,70)];
@@ -132,7 +138,7 @@ const float MaxV = 2.5;
         
         //目标分数
         goalLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-        goalLab.textAlignment = NSTextAlignmentCenter;
+        goalLab.textAlignment = NSTextAlignmentLeft;
         goalLab.textColor = [UIColor redColor];
         goalLab.text = [NSString stringWithFormat:@"目标:%d分",[GameSetManager shareManager].grade];
         goalLab.font = [UIFont boldSystemFontOfSize:14];
@@ -140,7 +146,7 @@ const float MaxV = 2.5;
         
         //得分lab
         gradeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 100, 30)];
-        gradeLab.textAlignment = NSTextAlignmentCenter;
+        gradeLab.textAlignment = NSTextAlignmentLeft;
         gradeLab.textColor = [UIColor whiteColor];
         gradeLab.font = [UIFont boldSystemFontOfSize:14];
         gradeLab.text = @"得分:0分";
@@ -172,7 +178,7 @@ const float MaxV = 2.5;
         
         //暂停
         temporaryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        temporaryBtn.frame = CGRectMake(5, frame.size.height-45, 45, 40);
+        temporaryBtn.frame = CGRectMake(5, frame.size.height-40, 45, 40);
         [temporaryBtn addTarget:self action:@selector(temporaryGame) forControlEvents:UIControlEventTouchUpInside];
         [temporaryBtn setBackgroundImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
         [self addSubview:temporaryBtn];
@@ -498,7 +504,7 @@ const float MaxV = 2.5;
     
     if (curTime == 0 && eatCount < [GameSetManager shareManager].grade)
     {
-        [self failToPlaygame];
+        [self failToPlaygame:@"时间用完了!"];
     }
     else if (curTime >= 0 && eatCount >= [GameSetManager shareManager].grade)
     {
@@ -640,10 +646,15 @@ const float MaxV = 2.5;
                 [halo removeFromSuperlayer];
             }
             
+            NSInteger r = [Utils getRandomNumberBetween:0 to:255];
+            NSInteger g = [Utils getRandomNumberBetween:0 to:255];
+            NSInteger b = [Utils getRandomNumberBetween:0 to:255];
+            
             halo = [PulsingHaloLayer layer];
             halo.position = rabbiter.center;
             halo.radius = 100;
-            halo.backgroundColor = [UIColor greenColor].CGColor;
+            UIColor *color = RGBColor(r, g, b);
+            halo.backgroundColor = color.CGColor;
             [self.layer insertSublayer:halo below:rabbiter.layer];
         }
         
@@ -700,7 +711,7 @@ const float MaxV = 2.5;
         
         if (CGRectContainsPoint(rect,rabbiter.center))
         {
-            [self failToPlaygame];
+            [self failToPlaygame:@"撞车了!"];
             
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//震动
         }
@@ -716,7 +727,7 @@ const float MaxV = 2.5;
 
 
 #pragma mark 游戏失败
-- (void)failToPlaygame
+- (void)failToPlaygame:(NSString *)msg
 {
     if (halo)
     {
@@ -727,7 +738,7 @@ const float MaxV = 2.5;
     
     NSArray *arr = [NSArray arrayWithObjects:@"选择关卡",@"重头再来", nil];
     
-    KIAlertView *alertView = [[KIAlertView alloc] initWithTitle:@"撞车了!" message:nil buttonTitleArr:arr event:^(NSInteger btnTag) {
+    KIAlertView *alertView = [[KIAlertView alloc] initWithTitle:msg message:nil buttonTitleArr:arr event:^(NSInteger btnTag) {
         
         if (btnTag == 0)
         {
@@ -794,6 +805,8 @@ const float MaxV = 2.5;
             }
             case 2:
             {
+                [self removeGestureRecognizer:tapGesture];
+                
                 [UIView animateWithDuration:2.0 animations:^{
                     
                     CGRect rect = rabbiter.frame;
@@ -826,6 +839,8 @@ const float MaxV = 2.5;
     [self removeGestureRecognizer:tapGesture];
     
     [[MusicManager shareManager] stop];
+    
+    [[MusicManager shareManager] playMusic:@"success.mp3"];
     
     [UIView animateWithDuration:2.0 animations:^{
         
@@ -866,7 +881,6 @@ const float MaxV = 2.5;
 - (void)restartGame
 {
     RestartBlk();
-    [[MusicManager shareManager] playMusic:@"bgmusic.mp3"];
 }
 
 - (void)choosePostAction

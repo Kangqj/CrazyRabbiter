@@ -13,6 +13,9 @@
 #import "ViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    BOOL  launch;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

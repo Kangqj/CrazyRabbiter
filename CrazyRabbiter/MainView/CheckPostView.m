@@ -18,13 +18,14 @@
     
     if (self)
     {
-        self.backgroundColor = RGBColor(150, 206, 35);
+        self.backgroundColor = RGBColor(206, 214, 173);
         
         UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 320, 50)];
         titleLab.text = @"关卡";
-        titleLab.textColor = [UIColor magentaColor];
+        titleLab.backgroundColor = RGBColor(50, 132, 66);
+        titleLab.textColor = [UIColor whiteColor];
         titleLab.textAlignment = UITextAlignmentCenter;
-        titleLab.font = [UIFont boldSystemFontOfSize:25];
+        titleLab.font = [UIFont fontWithName:@"Snell RoundHand" size:25];
         [self addSubview:titleLab];
         
         for (int i = 0; i< 28; i++)
@@ -44,7 +45,7 @@
             
             UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
             nameLab.text = [NSString stringWithFormat:@"%d",i+1];
-            nameLab.textColor = [UIColor whiteColor];
+            nameLab.textColor = [UIColor brownColor];
             nameLab.textAlignment = UITextAlignmentCenter;
             nameLab.font = [UIFont boldSystemFontOfSize:15];
             [btn addSubview:nameLab];
