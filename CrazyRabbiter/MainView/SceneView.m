@@ -62,9 +62,9 @@ const float MaxV = 2.5;
         
         railLab1 = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 120, 30)];
         railLab1.textAlignment = NSTextAlignmentCenter;
-        railLab1.textColor = [UIColor redColor];
+        railLab1.textColor = RGBColor(128, 42, 42);
         railLab1.font = [UIFont boldSystemFontOfSize:16];
-        railLab1.text = [NSString stringWithFormat:@"第%d关",[GameSetManager shareManager].level];
+        railLab1.text = @"出发!";
         railLab1.backgroundColor = [UIColor clearColor];
         [railImage1 addSubview:railLab1];
         
@@ -74,7 +74,7 @@ const float MaxV = 2.5;
         
         railLab2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 120, 30)];
         railLab2.textAlignment = NSTextAlignmentCenter;
-        railLab2.textColor = [UIColor brownColor];
+        railLab2.textColor = RGBColor(128, 42, 42);
         railLab2.font = [UIFont boldSystemFontOfSize:14];
         railLab2.text = @"10米";
         railLab2.backgroundColor = [UIColor clearColor];
@@ -86,15 +86,15 @@ const float MaxV = 2.5;
         fruitView.backgroundColor = [UIColor clearColor];
         [self addSubview:fruitView];
         
-        noteView = [[UITextView alloc] initWithFrame:CGRectMake(10, 80, 300, 200)];
+        noteView = [[UITextView alloc] initWithFrame:CGRectMake(10, 200, 300, 50)];
         noteView.backgroundColor = [UIColor colorWithRed:189/255.0 green:254/255.0 blue:246/255.0 alpha:1.0];
         noteView.editable = NO;
         noteView.textColor = RGBColor(150, 206, 35);
-        noteView.font = [UIFont systemFontOfSize:18];
+        noteView.font = [UIFont systemFontOfSize:30];
+        noteView.textAlignment = NSTextAlignmentCenter;
         noteView.layer.cornerRadius = 5;
         [fruitView addSubview:noteView];
-        noteView.text = @"                          提示\n\n    本关为百米冲刺，在100米内小兔子吃得的水果分数达到100分就算通过～\n\n             点击屏幕开始!";
-        noteView.hidden = YES;
+        noteView.text = [NSString stringWithFormat:@"第%d关",[GameSetManager shareManager].level];
         
         NSInteger r = [Utils getRandomNumberBetween:0 to:255];
         NSInteger g = [Utils getRandomNumberBetween:0 to:255];
@@ -104,6 +104,10 @@ const float MaxV = 2.5;
         UIImageView *groundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, frame.size.height-40, frame.size.width,40)];
         groundImage.backgroundColor = RGBColor(r, g, b);
         [self addSubview:groundImage];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 10)];
+        lineView.backgroundColor = RGBColor(252, 230, 201);;
+        [groundImage addSubview:lineView];
         
         /*
         if ([GameSetManager shareManager].level >= 2)
