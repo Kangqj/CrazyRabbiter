@@ -64,7 +64,7 @@ const float MaxV = 2.5;
         railLab1.textAlignment = NSTextAlignmentCenter;
         railLab1.textColor = RGBColor(128, 42, 42);
         railLab1.font = [UIFont boldSystemFontOfSize:16];
-        railLab1.text = @"出发!";
+        railLab1.text = NSLocalizedString(@"出发!", nil);
         railLab1.backgroundColor = [UIColor clearColor];
         [railImage1 addSubview:railLab1];
         
@@ -76,7 +76,7 @@ const float MaxV = 2.5;
         railLab2.textAlignment = NSTextAlignmentCenter;
         railLab2.textColor = RGBColor(128, 42, 42);
         railLab2.font = [UIFont boldSystemFontOfSize:14];
-        railLab2.text = @"10米";
+        railLab2.text = [NSString stringWithFormat:@"10%@",NSLocalizedString(@"米", nil)];
         railLab2.backgroundColor = [UIColor clearColor];
         [railImage2 addSubview:railLab2];
         
@@ -86,28 +86,32 @@ const float MaxV = 2.5;
         fruitView.backgroundColor = [UIColor clearColor];
         [self addSubview:fruitView];
         
-        noteView = [[UITextView alloc] initWithFrame:CGRectMake(10, 200, 300, 50)];
-        noteView.backgroundColor = [UIColor colorWithRed:189/255.0 green:254/255.0 blue:246/255.0 alpha:1.0];
-        noteView.editable = NO;
-        noteView.textColor = RGBColor(150, 206, 35);
-        noteView.font = [UIFont systemFontOfSize:30];
-        noteView.textAlignment = NSTextAlignmentCenter;
-        noteView.layer.cornerRadius = 5;
-        [fruitView addSubview:noteView];
-        noteView.text = [NSString stringWithFormat:@"第%d关",[GameSetManager shareManager].level];
+        NSInteger br = [Utils getRandomNumberBetween:0 to:255];
+        NSInteger bg = [Utils getRandomNumberBetween:0 to:255];
+        NSInteger bb = [Utils getRandomNumberBetween:0 to:255];
         
-        NSInteger r = [Utils getRandomNumberBetween:0 to:255];
-        NSInteger g = [Utils getRandomNumberBetween:0 to:255];
-        NSInteger b = [Utils getRandomNumberBetween:0 to:255];
+        noteView = [[UITextView alloc] initWithFrame:CGRectMake(80, 200, 160, 50)];
+        noteView.backgroundColor = RGBColor(br, bg, bb);//[UIColor colorWithRed:189/255.0 green:254/255.0 blue:246/255.0 alpha:1.0];
+        noteView.editable = NO;
+        noteView.textColor = RGBColor(128, 42, 42);//RGBColor(150, 206, 35);
+        noteView.font = [UIFont boldSystemFontOfSize:30];
+        noteView.textAlignment = NSTextAlignmentLeft;
+        noteView.layer.cornerRadius = 8;
+        [fruitView addSubview:noteView];
+        noteView.text = [NSString stringWithFormat:@"%@ %d",NSLocalizedString(@"关卡", nil),[GameSetManager shareManager].level];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 0, 50, 50)];
+        imageView.image = [UIImage imageNamed:@"Icon.png"];
+        [noteView addSubview:imageView];
         
         //草地场景
         UIImageView *groundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, frame.size.height-40, frame.size.width,40)];
-        groundImage.backgroundColor = RGBColor(r, g, b);
+        groundImage.backgroundColor = RGBColor(115, 74, 18);//RGBColor(r, g, b);
         [self addSubview:groundImage];
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 10)];
-        lineView.backgroundColor = RGBColor(252, 230, 201);;
-        [groundImage addSubview:lineView];
+//        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 2)];
+//        lineView.backgroundColor = RGBColor(252, 230, 201);;
+//        [groundImage addSubview:lineView];
         
         /*
         if ([GameSetManager shareManager].level >= 2)
@@ -136,32 +140,50 @@ const float MaxV = 2.5;
         }
         */
         
+        timeProgressView = [[LDProgressView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+        timeProgressView.showText = @NO;
+        timeProgressView.progress = 1.0;
+        timeProgressView.borderRadius = @5;
+        timeProgressView.type = LDProgressSolid;
+        [self addSubview:timeProgressView];
+        timeProgressView.alpha = 0.6;
+        
+        goalProgressView = [[LDProgressView alloc] initWithFrame:CGRectMake(0, frame.size.height-40, self.frame.size.width, 40)];
+        goalProgressView.color = RGBColor(255, 215, 0);
+        goalProgressView.showText = @NO;
+        goalProgressView.flat = @YES;
+        goalProgressView.progress = 0.0;
+        goalProgressView.animate = @YES;
+        goalProgressView.borderRadius = @5;
+        [self addSubview:goalProgressView];
+        
         //兔子场景
-        rabbiter = [[RabbiterView alloc] initWithFrame:CGRectMake(100, frame.size.height-60-40, 40,70)];
+        rabbiter = [[RabbiterView alloc] initWithFrame:CGRectMake(100, frame.size.height-60-50, 40,70)];
         [self addSubview:rabbiter];
         
         //目标分数
-        goalLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-        goalLab.textAlignment = NSTextAlignmentLeft;
+        goalLab = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width-110, frame.size.height-40+10, 100, 20)];
+        goalLab.textAlignment = NSTextAlignmentRight;
         goalLab.textColor = [UIColor redColor];
-        goalLab.text = [NSString stringWithFormat:@"目标:%d分",[GameSetManager shareManager].grade];
+        goalLab.text = [NSString stringWithFormat:@"%@:%d",NSLocalizedString(@"目标", nil),[GameSetManager shareManager].grade];
         goalLab.font = [UIFont boldSystemFontOfSize:14];
         [self addSubview:goalLab];
         
         //得分lab
-        gradeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 100, 30)];
+        gradeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height-40+10, 100, 20)];
         gradeLab.textAlignment = NSTextAlignmentLeft;
-        gradeLab.textColor = [UIColor whiteColor];
+        gradeLab.textColor = RGBColor(128, 42, 42);
         gradeLab.font = [UIFont boldSystemFontOfSize:14];
-        gradeLab.text = @"得分:0分";
+        gradeLab.text = [NSString stringWithFormat:@"%@:0",NSLocalizedString(@"得分", nil)];
         [self addSubview:gradeLab];
         
         //剩余时间
-        timeLab = [[UILabel alloc] initWithFrame:CGRectMake(110, 0, 100, 30)];
+        timeLab = [[UILabel alloc] initWithFrame:CGRectMake(110, 0, 100, 20)];
         timeLab.textAlignment = NSTextAlignmentCenter;
-        timeLab.text = [NSString stringWithFormat:@"时间:%ds",GameTime];;
+        timeLab.text = [NSString stringWithFormat:@"%@:%ds",NSLocalizedString(@"时间", nil),GameTime];;
         timeLab.font = [UIFont boldSystemFontOfSize:14];
         [self addSubview:timeLab];
+        timeLab.textColor = RGBColor(124, 252, 0);
         
         if ([GameSetManager shareManager].level % 2 == 1)//白天
         {
@@ -169,9 +191,27 @@ const float MaxV = 2.5;
             NSInteger g = [Utils getRandomNumberBetween:0 to:255];
             NSInteger b = [Utils getRandomNumberBetween:0 to:255];
             
-            self.backgroundColor = RGBColor(r,g,b);
+            NSInteger r1 = [Utils getRandomNumberBetween:0 to:255];
+            NSInteger g1 = [Utils getRandomNumberBetween:0 to:255];
+            NSInteger b1 = [Utils getRandomNumberBetween:0 to:255];
+            
+            NSInteger r2 = [Utils getRandomNumberBetween:0 to:255];
+            NSInteger g2 = [Utils getRandomNumberBetween:0 to:255];
+            NSInteger b2 = [Utils getRandomNumberBetween:0 to:255];
+            
             sunImage.image = [UIImage imageNamed:@"sun.png"];
-            timeLab.textColor = [UIColor blackColor];
+            
+            UIColor *color = RGBColor(r,g,b);
+            UIColor *color1 = RGBColor(r1,g1,b1);
+            UIColor *color2 = RGBColor(r2,g2,b2);
+//            self.backgroundColor = RGBColor(r,g,b);
+            
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = self.frame;
+            gradient.colors = [NSArray arrayWithObjects:(id)color.CGColor,
+                               (id)color1.CGColor,
+                               (id)color2.CGColor,nil];
+            [self.layer insertSublayer:gradient atIndex:0];
         }
         else//黑夜
         {
@@ -182,7 +222,7 @@ const float MaxV = 2.5;
         
         //暂停
         temporaryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        temporaryBtn.frame = CGRectMake(5, frame.size.height-40, 45, 40);
+        temporaryBtn.frame = CGRectMake((self.frame.size.width-45)/2, frame.size.height-40, 45, 40);
         [temporaryBtn addTarget:self action:@selector(temporaryGame) forControlEvents:UIControlEventTouchUpInside];
         [temporaryBtn setBackgroundImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
         [self addSubview:temporaryBtn];
@@ -359,14 +399,14 @@ const float MaxV = 2.5;
     }];
 }
 
-//点击背景跳跃方法
+#pragma mark 点击背景跳跃方法
 - (void)jumpTap
 {
     if (!start)
     {
         start = YES;
         
-        [KProgressHUD showHUDWithText:@"小兔子开始旅行了！"];
+        [KProgressHUD showHUDWithText:NSLocalizedString(@"小兔子开始旅行了！", nil)];
         
         [CDtimer fire];
     }
@@ -400,7 +440,13 @@ const float MaxV = 2.5;
             curTime = 0;
         }
         
-        timeLab.text = [NSString stringWithFormat:@"时间:%ds",curTime];
+        timeLab.text = [NSString stringWithFormat:@"%@:%ds",NSLocalizedString(@"时间", nil),curTime];
+        
+        float curPro = curTime;
+        
+        float poffset = curPro/GameTime;
+        
+        timeProgressView.progress = poffset;
         
         [UIView animateWithDuration:1 animations:^{
             
@@ -481,7 +527,7 @@ const float MaxV = 2.5;
         distance += 10;
         
         //随机替换树的图片
-        NSInteger tmpY = [Utils getRandomNumberBetween:1 to:12];
+        NSInteger tmpY = [Utils getRandomNumberBetween:1 to:17];
         NSString *name = [NSString stringWithFormat:@"tree%d.png",tmpY];
         treeImage2.image = [UIImage imageNamed:name];
     }
@@ -525,9 +571,9 @@ const float MaxV = 2.5;
     
     rect.origin.y = rect.origin.y - (MaxV - (MaxTime - maxJumpTime)*VG);
     
-    if (rect.origin.y > self.frame.size.height-rect.size.height-40+10)
+    if (rect.origin.y > self.frame.size.height-rect.size.height-40)
     {
-        rect.origin.y = self.frame.size.height-rect.size.height-40+10;
+        rect.origin.y = self.frame.size.height-rect.size.height-40;
     }
     
     if (rect.origin.y < 20)
@@ -554,7 +600,7 @@ const float MaxV = 2.5;
         int perY = tmpY/10;
         int yValue = perY*10;
         
-        NSInteger glede = [Utils getRandomNumberBetween:1 to:5];
+        NSInteger glede = [Utils getRandomNumberBetween:1 to:10];
         
         UIImageView *gledeImage = [[UIImageView alloc] initWithFrame:CGRectMake(320 - rect.origin.x, yValue, 50, 50)];
         gledeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"glede%d.png",glede]];
@@ -580,7 +626,7 @@ const float MaxV = 2.5;
         
         //水果
         UIImageView *foodImage = [[UIImageView alloc] initWithFrame:CGRectMake(320 - rect.origin.x, yValue, 30, 30)];
-        NSInteger imageId = [Utils getRandomNumberBetween:1 to:8];
+        NSInteger imageId = [Utils getRandomNumberBetween:1 to:13];
         foodImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png",imageId]];
         [fruitView addSubview:foodImage];
         
@@ -634,12 +680,16 @@ const float MaxV = 2.5;
             [self playFruitEatSound];
             
             eatCount ++;
-            gradeLab.text = [NSString stringWithFormat:@"得分:%d分",eatCount];
+            gradeLab.text = [NSString stringWithFormat:@"%@:%d",NSLocalizedString(@"得分", nil),eatCount];
+            
+            float eatPro = eatCount;
+            float pro = eatPro/[GameSetManager shareManager].grade;
+            goalProgressView.progress = pro;            
             
             //分数抖动动画
             [AnimationEngin shakeAnimation:gradeLab repeatCount:4];
             
-            CGPoint point = CGPointMake(-fruitView.frame.origin.x + 60, 5);
+            CGPoint point = CGPointMake(-fruitView.frame.origin.x + 60, self.frame.size.height);
             
             //水果飞行动画
             [AnimationEngin flyAddSmallerAnimationToPoint:point withTime:1.0 withTime:foodImage];
@@ -733,6 +783,9 @@ const float MaxV = 2.5;
 #pragma mark 游戏失败
 - (void)failToPlaygame:(NSString *)msg
 {
+    [threadTimer invalidate];
+    threadTimer = nil;
+    
     if (halo)
     {
         [halo removeFromSuperlayer];
@@ -752,9 +805,6 @@ const float MaxV = 2.5;
         {
             [self restartGame];
         }
-        
-        [self addGestureRecognizer:tapGesture];
-        
     }];
     
     [alertView show];
@@ -777,6 +827,9 @@ const float MaxV = 2.5;
 #pragma mark 游戏成功
 - (void)successToPlaygame
 {
+    [threadTimer invalidate];
+    threadTimer = nil;
+    
     if (halo)
     {
         [halo removeFromSuperlayer];
@@ -809,8 +862,6 @@ const float MaxV = 2.5;
             }
             case 2:
             {
-                [self removeGestureRecognizer:tapGesture];
-                
                 [UIView animateWithDuration:2.0 animations:^{
                     
                     CGRect rect = rabbiter.frame;
@@ -833,8 +884,6 @@ const float MaxV = 2.5;
             default:
                 break;
         }
-        
-        [self addGestureRecognizer:tapGesture];
         
     }];
     
@@ -901,11 +950,11 @@ const float MaxV = 2.5;
     
     //构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:[GameSetManager shareManager].message
-                                       defaultContent:@"abc"
+                                       defaultContent:@""
                                                 image:imageAttach
-                                                title:@"kang"
+                                                title:NSLocalizedString(@"救命啊！", nil)
                                                   url:@"http://www.weibo.com"
-                                          description:@"这是一条测试信息"
+                                          description:[GameSetManager shareManager].message
                                             mediaType:SSPublishContentMediaTypeNews];
     
     [ShareSDK showShareActionSheet:nil

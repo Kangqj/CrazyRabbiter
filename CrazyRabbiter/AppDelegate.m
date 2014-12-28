@@ -65,8 +65,8 @@
      
      如果需要实现SSO，需要导入libWeiboSDK.a，并引入WBApi.h，将WBApi类型传入接口
      **/
-    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+    [ShareSDK connectTencentWeiboWithAppKey:@"801555433"
+                                  appSecret:@"ea9478d68546312e9df98ecb5b2e2254"
                                 redirectUri:@"http://www.sharesdk.cn"
                                    wbApiCls:[WeiboApi class]];
     
@@ -114,15 +114,15 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [application cancelAllLocalNotifications];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date = [formatter dateFromString:@"2014-11-26 12:00:00"];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSDate *date = [formatter dateFromString:@"2014-11-26 12:00:00"];
     
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     
-    NSString *note1 = @"当小兔子触碰到太阳或者月亮就会有惊喜发生哦～";
-    NSString *note2 = @"其实小兔子也可以左右移动哦～";
-    NSString *note3 = @"干嘛呢？还不快来救救你的小伙伴啦";
+    NSString *note1 = NSLocalizedString(@"救命啊！", nil);
+    NSString *note2 = NSLocalizedString(@"你也可以拖动小兔子哦！", nil);
+    NSString *note3 = NSLocalizedString(@"当小兔子碰到太阳或者月亮就会有惊喜发生哦！", nil);
     
     NSArray *noteArr = [NSArray arrayWithObjects:note1,note2,note3, nil];
     
@@ -131,7 +131,9 @@
     if (notification!=nil)
     {
         //从现在开始，10秒以后通知
-        notification.fireDate = [[NSData data] dateByAddingTimeInterval:300];
+        NSDate *date = [NSDate date];
+        NSDate *firedate = [date dateByAddingTimeInterval:300];
+        notification.fireDate = firedate;
         notification.repeatInterval = NSCalendarUnitDay;
         //使用本地时区
         notification.timeZone = [NSTimeZone defaultTimeZone];
@@ -145,6 +147,19 @@
     }
     
     launch = NO;
+    
+    UIApplication* app = [UIApplication sharedApplication];
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        [app endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    // Start the long-running task and return immediately.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             0), ^{
+        // Do the work associated with the task.
+        [app endBackgroundTask:bgTask];  
+        bgTask = UIBackgroundTaskInvalid;  
+    });
     
 }
 

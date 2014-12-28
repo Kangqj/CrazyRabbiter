@@ -155,15 +155,15 @@ static char overviewKey;
         contentView.layer.cornerRadius = 8;
         contentView.alpha = 0;
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(contentView.frame.size.width-50, 0, 50, 50)];
-        imageView.image = [UIImage imageNamed:@"Icon.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(contentView.frame.size.width-70, 15, 50, 50)];
+        imageView.image = [UIImage imageNamed:@"success.png"];
         [contentView addSubview:imageView];
         
         NSRange range = [title rangeOfString:@"成功"];
         
         if (range.location == NSNotFound)
         {
-            imageView.image = [UIImage imageNamed:@"glede2.png"];
+            imageView.image = [UIImage imageNamed:@"fail.png"];
         }
         
         titleLab  = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, contentView.frame.size.width, 40)];
@@ -249,7 +249,10 @@ static char overviewKey;
 
 - (void)alertButtonEvent:(UIButton *)button
 {
-    [self dissmiss];
+    if (button.tag != 1)
+    {
+        [self dissmiss];
+    }
     
     ButtonEvent event = (ButtonEvent)objc_getAssociatedObject(self, &overviewKey);
     event(button.tag);

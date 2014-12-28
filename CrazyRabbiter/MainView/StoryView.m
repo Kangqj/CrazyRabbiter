@@ -142,7 +142,7 @@
     UILabel *label_L = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     label_L.textAlignment = UITextAlignmentCenter;
     label_L.font = [UIFont systemFontOfSize:12];
-    label_L.text = NSLocalizedString(@"let’s play together", nil);
+    label_L.text = NSLocalizedString(@"我们一起玩好吗？", nil);
     label_L.textColor = [UIColor blueColor];
     label_L.backgroundColor = [UIColor clearColor];
     [paopaoL addSubview:label_L];
@@ -157,7 +157,7 @@
     UILabel *label_R = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     label_R.textAlignment = UITextAlignmentCenter;
     label_R.font = [UIFont systemFontOfSize:12];
-    label_R.text = NSLocalizedString(@"ok", nil);
+    label_R.text = NSLocalizedString(@"好的", nil);
     label_R.textColor = [UIColor blueColor];
     label_R.backgroundColor = [UIColor clearColor];
     [paopaoR addSubview:label_R];

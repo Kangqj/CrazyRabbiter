@@ -21,7 +21,7 @@
         self.backgroundColor = RGBColor(206, 214, 173);
         
         UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 320, 50)];
-        titleLab.text = @"关卡";
+        titleLab.text = NSLocalizedString(@"挑战", nil);
         titleLab.backgroundColor = RGBColor(50, 132, 66);
         titleLab.textColor = [UIColor whiteColor];
         titleLab.textAlignment = UITextAlignmentCenter;

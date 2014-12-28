@@ -11,6 +11,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "DRNRealTimeBlurView.h"
 #import "FXBlurView.h"
+#import "LDProgressView.h"
 
 @interface SceneView : UIView
 {
@@ -61,6 +62,9 @@
     NSInteger      curTime;    //当前时间
     
     UIImageView    *sunImage; //太阳
+    
+    LDProgressView *timeProgressView;
+    LDProgressView *goalProgressView;
 }
 
 @property (copy, nonatomic) void (^ RestartBlk)();

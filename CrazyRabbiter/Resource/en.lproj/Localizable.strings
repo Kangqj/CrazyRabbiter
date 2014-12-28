@@ -1,4 +1,4 @@
-/* 
+/*
   CrazyRabbiter.strings
   CrazyRabbiter
 
@@ -6,6 +6,17 @@
   Copyright (c) 2014年 康起军. All rights reserved.
 */
 "我们一起玩好吗？" = "let’s play together";
-"ok" = "Good";
-"I will have to save my little partner" = "I will have to save my little partner"
-"Ready" = "Ready?";
+"好的" = "Good";
+"我要救我的小伙伴!" = "I will have to save my little partner!";
+"出发!" = "Ready?";
+"小兔子长大了!" = "Rabbit grew up";
+"关卡" = "Level";
+"米" = "m";
+"目标" = "Goal";
+"得分" = "Score";
+"时间" = "Time";
+"小兔子开始旅行了！" = "Little Rabbit began to travel it!";
+"挑战" = "Challenge";
+"救命！" = "Help!";
+"你也可以拖动小兔子哦！" = "You can also drag the little rabbit！";
+"当小兔子碰到太阳或者月亮就会有惊喜发生哦！" = "There are amazing things in the sun or moon！";
