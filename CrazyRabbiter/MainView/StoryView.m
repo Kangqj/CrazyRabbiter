@@ -70,7 +70,7 @@
     railLab.textAlignment = NSTextAlignmentCenter;
     railLab.textColor = [UIColor brownColor];
     railLab.font = [UIFont boldSystemFontOfSize:14];
-    railLab.text = @"故事剧情";
+    railLab.text = NSLocalizedString(@"很久以前...", nil);
     railLab.backgroundColor = [UIColor clearColor];
     [railImage addSubview:railLab];
     
@@ -134,7 +134,7 @@
 - (void)showTwoRabbiterChatImageView
 {
     //聊天paopao
-    paopaoL = [[UIImageView alloc] initWithFrame:CGRectMake(40, 430, 100,55)];
+    paopaoL = [[UIImageView alloc] initWithFrame:CGRectMake(40, self.frame.size.height-138, 100,55)];
     paopaoL.image = [UIImage imageNamed:@"paopao_L.png"];
     [self addSubview:paopaoL];
     paopaoL.alpha = 0;
@@ -149,7 +149,7 @@
     
     [self performSelector:@selector(showPaopaoL) withObject:paopaoL afterDelay:1];
     
-    paopaoR = [[UIImageView alloc] initWithFrame:CGRectMake(120, 430, 100,55)];
+    paopaoR = [[UIImageView alloc] initWithFrame:CGRectMake(120, self.frame.size.height-138, 100,55)];
     paopaoR.image = [UIImage imageNamed:@"paopao_R.png"];
     [self addSubview:paopaoR];
     paopaoR.alpha = 0;
@@ -360,7 +360,7 @@
 //小兔子要救小伙伴
 - (void)showTalk
 {
-    paopaoL = [[UIImageView alloc] initWithFrame:CGRectMake(140, 430, 150,55)];
+    paopaoL = [[UIImageView alloc] initWithFrame:CGRectMake(140, self.frame.size.height-138, 150,55)];
     paopaoL.image = [UIImage imageNamed:@"paopao_L.png"];
     [self addSubview:paopaoL];
     paopaoL.alpha = 0;
@@ -368,7 +368,7 @@
     UILabel *label_L = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 40)];
     label_L.textAlignment = UITextAlignmentCenter;
     label_L.font = [UIFont systemFontOfSize:12];
-    label_L.text = NSLocalizedString(@"我要救我的小伙伴~", nil);
+    label_L.text = NSLocalizedString(@"我要救我的小伙伴!", nil);
     label_L.textColor = [UIColor blueColor];
     label_L.backgroundColor = [UIColor clearColor];
     [paopaoL addSubview:label_L];

@@ -382,9 +382,9 @@
     [AnimationEngin showMarqueeAnimation:imageView];
     
     UIButton *choosePostBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [choosePostBtn setTitle:@"重新选关" forState:UIControlStateNormal];
+    [choosePostBtn setTitle:NSLocalizedString(@"重新选关", nil) forState:UIControlStateNormal];
     [choosePostBtn setTitleColor:RGBColor(150, 206, 35) forState:UIControlStateNormal];
-    choosePostBtn.frame = CGRectMake(110, 300, 100, 40);
+    choosePostBtn.frame = CGRectMake(110, self.frame.size.height - 268, 100, 40);
     [choosePostBtn addTarget:self action:@selector(operateAction:) forControlEvents:UIControlEventTouchUpInside];
     choosePostBtn.layer.borderColor = [UIColor grayColor].CGColor;
     choosePostBtn.layer.shadowOpacity = 0.8;
@@ -393,37 +393,37 @@
     choosePostBtn.tag = BlurOperate_choose;
     
     UIButton *restartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [restartBtn setTitle:@"重新开始" forState:UIControlStateNormal];
+    [restartBtn setTitle:NSLocalizedString(@"重新开始", nil) forState:UIControlStateNormal];
     [restartBtn setTitleColor:RGBColor(150, 206, 35) forState:UIControlStateNormal];
     restartBtn.layer.borderColor = [UIColor grayColor].CGColor;
     restartBtn.layer.shadowOpacity = 0.8;
     restartBtn.layer.shadowOffset = CGSizeMake(5, 5);
-    restartBtn.frame = CGRectMake(110, 350, 100, 40);
+    restartBtn.frame = CGRectMake(110, self.frame.size.height - 268 + 50, 100, 40);
     [restartBtn addTarget:self action:@selector(operateAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:restartBtn];
     restartBtn.tag = BlurOperate_restart;
     
-    UIButton *continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [continueBtn setTitle:@"继续" forState:UIControlStateNormal];
-    [continueBtn setTitleColor:RGBColor(150, 206, 35) forState:UIControlStateNormal];
-    continueBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    continueBtn.layer.shadowOpacity = 0.8;
-    continueBtn.layer.shadowOffset = CGSizeMake(5, 5);
-    continueBtn.frame = CGRectMake(110, 400, 100, 40);
-    [continueBtn addTarget:self action:@selector(operateAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:continueBtn];
-    continueBtn.tag = BlurOperate_continue;
-    
     UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+    [shareButton setTitle:NSLocalizedString(@"分享", nil) forState:UIControlStateNormal];
     [shareButton setTitleColor:RGBColor(150, 206, 35) forState:UIControlStateNormal];
     shareButton.layer.borderColor = [UIColor grayColor].CGColor;
     shareButton.layer.shadowOpacity = 0.8;
     shareButton.layer.shadowOffset = CGSizeMake(5, 5);
-    shareButton.frame = CGRectMake(110, 450, 100, 40);
+    shareButton.frame = CGRectMake(110, self.frame.size.height - 268 + 100, 100, 40);
     [shareButton addTarget:self action:@selector(operateAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:shareButton];
     shareButton.tag = BlurOperate_share;
+    
+    UIButton *continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [continueBtn setTitle:NSLocalizedString(@"继续", nil) forState:UIControlStateNormal];
+    [continueBtn setTitleColor:RGBColor(150, 206, 35) forState:UIControlStateNormal];
+    continueBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    continueBtn.layer.shadowOpacity = 0.8;
+    continueBtn.layer.shadowOffset = CGSizeMake(5, 5);
+    continueBtn.frame = CGRectMake(110, self.frame.size.height - 268 + 150, 100, 40);
+    [continueBtn addTarget:self action:@selector(operateAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:continueBtn];
+    continueBtn.tag = BlurOperate_continue;
 }
 
 - (void)operateAction:(UIButton *)button

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
+
+/*
 #import <ShareSDK/ShareSDK.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
-#import "ViewController.h"
+*/
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {

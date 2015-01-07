@@ -8,8 +8,10 @@
 
 #import "SceneView.h"
 #import "Utils.h"
+/*
 #import <ShareSDK/ShareSDK.h>
 #import <AGCommon/AGCommon.h>
+*/
 
 #define  GameTime    60
 
@@ -101,7 +103,7 @@ const float MaxV = 2.5;
         noteView.text = [NSString stringWithFormat:@"%@ %d",NSLocalizedString(@"关卡", nil),[GameSetManager shareManager].level];
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 0, 50, 50)];
-        imageView.image = [UIImage imageNamed:@"Icon.png"];
+        imageView.image = [UIImage imageNamed:@"level.png"];
         [noteView addSubview:imageView];
         
         //草地场景
@@ -503,7 +505,7 @@ const float MaxV = 2.5;
         rect1.origin.x = 320;
         bgView1.frame = rect1;
         
-        railLab1.text = [NSString stringWithFormat:@"%d米",[railLab2.text intValue]+10];
+        railLab1.text = [NSString stringWithFormat:@"%d%@",[railLab2.text intValue]+10,NSLocalizedString(@"米", nil)];
         
         distance += 10;
         
@@ -522,7 +524,7 @@ const float MaxV = 2.5;
         rect2.origin.x = 320;
         bgView2.frame = rect2;
         
-        railLab2.text = [NSString stringWithFormat:@"%d米",[railLab1.text intValue]+10];
+        railLab2.text = [NSString stringWithFormat:@"%d%@",[railLab1.text intValue]+10,NSLocalizedString(@"米", nil)];
         
         distance += 10;
         
@@ -538,7 +540,7 @@ const float MaxV = 2.5;
         
         if (rect.size.width < 40 + eatCount/10 * 5)
         {
-            [KProgressHUD showHUDWithText:@"小兔子长大了!"];
+            [KProgressHUD showHUDWithText:NSLocalizedString(@"小兔子长大了!", nil)];
             
             [UIView animateWithDuration:0.3 animations:^{
                 
@@ -554,7 +556,7 @@ const float MaxV = 2.5;
     
     if (curTime == 0 && eatCount < [GameSetManager shareManager].grade)
     {
-        [self failToPlaygame:@"时间用完了!"];
+        [self failToPlaygame:NSLocalizedString(@"时间用完了!", nil)];
     }
     else if (curTime >= 0 && eatCount >= [GameSetManager shareManager].grade)
     {
@@ -723,7 +725,7 @@ const float MaxV = 2.5;
             //分数抖动动画
             [AnimationEngin shakeAnimation:gradeLab repeatCount:4];
             
-            CGPoint point = CGPointMake(-fruitView.frame.origin.x + 60, 5);
+            CGPoint point = CGPointMake(-fruitView.frame.origin.x + 60, self.frame.size.height);
             
             //水果飞行动画
             [AnimationEngin flyAddSmallerAnimationToPoint:point withTime:1.0 withTime:foodImage];
@@ -765,7 +767,7 @@ const float MaxV = 2.5;
         
         if (CGRectContainsPoint(rect,rabbiter.center))
         {
-            [self failToPlaygame:@"撞车了!"];
+            [self failToPlaygame:NSLocalizedString(@"失败了!", nil)];
             
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//震动
         }
@@ -793,7 +795,7 @@ const float MaxV = 2.5;
     
     start = NO;
     
-    NSArray *arr = [NSArray arrayWithObjects:@"选择关卡",@"重头再来", nil];
+    NSArray *arr = [NSArray arrayWithObjects:NSLocalizedString(@"选择关卡", nil),NSLocalizedString(@"重头再来", nil),nil];
     
     KIAlertView *alertView = [[KIAlertView alloc] initWithTitle:msg message:nil buttonTitleArr:arr event:^(NSInteger btnTag) {
         
@@ -839,11 +841,11 @@ const float MaxV = 2.5;
     
     NSString *msg = [NSString stringWithFormat:@"小兔子吃了%d个水果,真棒~",eatCount];
     
-    NSArray *arr = [NSArray arrayWithObjects:@"再挑战一次",@"炫耀一下",@"下一关", nil];
+    NSArray *arr = [NSArray arrayWithObjects:NSLocalizedString(@"再挑战一次", nil), NSLocalizedString(@"炫耀一下", nil),NSLocalizedString(@"下一关", nil), nil];
     
-    NSString *title = [NSString stringWithFormat:@"第%d关 闯关成功!",[GameSetManager shareManager].level];
+    NSString *title = [NSString stringWithFormat:@"%@%d %@",NSLocalizedString(@"关卡", nil),[GameSetManager shareManager].level,NSLocalizedString(@"挑战成功!", nil)];
     
-    KIAlertView *alertView = [[KIAlertView alloc] initWithTitle:title message:msg buttonTitleArr:arr event:^(NSInteger btnTag) {
+    KIAlertView *alertView = [[KIAlertView alloc] initWithTitle:title message:nil buttonTitleArr:arr event:^(NSInteger btnTag) {
         
         switch (btnTag)
         {
@@ -941,10 +943,17 @@ const float MaxV = 2.5;
     BackToChooseBlk();
 }
 
-
-//分享
+#pragma mark 分享
 - (void)shareApp
 {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示", nil)
+                                                        message:NSLocalizedString(@"小康正在玩命开发中...", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:NSLocalizedString(@"加油哦！", nil), nil];
+    [alertView show];
+    
+    /*
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"tuzi"  ofType:@"png"];
     id<ISSCAttachment> imageAttach = [ShareSDK imageWithPath:imagePath];
     
@@ -977,6 +986,7 @@ const float MaxV = 2.5;
                                     [KProgressHUD showHUDWithText:[NSString stringWithFormat:@"分享失败:%@",[error errorDescription]]];
                                 }
                             }];
+     */
     
 }
 

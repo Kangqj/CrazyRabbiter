@@ -45,7 +45,7 @@ static MusicManager *manager = nil;
     }
     
     NSString *musicPath = [[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]];
-    
+    NSLog(@"-----%@",musicPath);
 //    if (musicPath == nil)
 //    {
 //        return;
